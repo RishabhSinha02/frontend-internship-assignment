@@ -14,6 +14,12 @@ export class HomeComponent implements OnInit {
     this.bookSearch = new FormControl('');
   }
 
+  searchText = ""
+  searchBook(val:string){
+    console.log(val)
+    this.searchText = val
+  }
+
   trendingSubjects: Array<any> = [
     { name: 'JavaScript' },
     { name: 'CSS' },

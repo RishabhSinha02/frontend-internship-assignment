@@ -1,15 +1,18 @@
 <div class="header">
   <div class="tw-text-24-px tw-font-600">Open Books Library</div>
+  <form>
   <div class="search-button">
     <mat-icon class="tw-mt-16-px" aria-label="Search Icon">search</mat-icon>
     <input
-      [formControl]="bookSearch"
+      #searchB
       name="searchKey"
       type="text"
+      (keyup)="searchBook(searchB.value)"
       placeholder="Search Books"
       class="tw-border-0 tw-bg-inherit"
     >
   </div>
+</form>
 </div>
 <div class="tw-flex tw-flex-row tw-m-24-px">
   <section class="trending-subjects">
@@ -20,4 +23,7 @@
       </li>
     </ul>
   </section>
+</div>
+<div>
+  {{searchText}}
 </div>

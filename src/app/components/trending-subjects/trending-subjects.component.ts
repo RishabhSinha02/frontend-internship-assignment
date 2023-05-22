@@ -19,7 +19,11 @@ export class TrendingSubjectsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private subjectsService: SubjectsService
-  ) {}
+  ) {
+    this.subjectsService.getSeachBooks().subscribe((bdata) => {
+      console.log(bdata)
+    });
+  }
 
   getAllBooks() {
     this.subjectsService.getAllBooks(this.subjectName).subscribe((data) => {
@@ -36,5 +40,7 @@ export class TrendingSubjectsComponent implements OnInit {
       this.getAllBooks();
     });
   }
+
+  
 
 }
