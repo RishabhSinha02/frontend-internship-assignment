@@ -27,3 +27,8 @@
 <div>
   {{searchText}}
 </div>
+<ul>
+  <li *ngFor="let subject of searchedBooks.docs">
+    {{subject.title}} : {{subject.author_name}} : {{subject.first_publish_year}}
+  </li>
+</ul>

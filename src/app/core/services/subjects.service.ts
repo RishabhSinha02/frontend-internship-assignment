@@ -19,7 +19,9 @@ export class SubjectsService {
   }
 
 
-  searchurl = "/search.json?title=the+lord+of+the+rings"
+ 
+  searchdata = "the+lord+of+the+rings";
+  searchurl = "/search.json?title="+this.searchdata;
   // for getting search data 
   getSeachBooks(): Observable<BookResponse> {
     return this.apiService.get(this.searchurl);

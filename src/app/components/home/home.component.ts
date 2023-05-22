@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, filter } from 'rxjs';
+import { SubjectsService } from '../../core/services/subjects.service';
 
 @Component({
   selector: 'front-end-internship-assignment-home',
@@ -9,9 +10,18 @@ import { debounceTime, filter } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   bookSearch: FormControl;
+  searchedBooks : any;
 
-  constructor() {
+  constructor(
+    private subjectsService: SubjectsService
+  ) {
     this.bookSearch = new FormControl('');
+    this.subjectsService.getSeachBooks().subscribe((bdata) => {
+      // console.log(bdata)
+      // console.log(typeof(bdata))
+      this.searchedBooks = bdata;
+      console.log(this.searchedBooks)
+    });
   }
 
   searchText = ""
@@ -27,6 +37,9 @@ export class HomeComponent implements OnInit {
     { name: 'Harry Potter' },
     { name: 'Crypto' },
   ];
+  getNumbers(count: number): number[] {
+    return Array.from({ length: count }, (_, i) => i + 1);
+  }
 
   ngOnInit(): void {
     this.bookSearch.valueChanges
