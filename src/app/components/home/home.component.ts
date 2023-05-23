@@ -14,14 +14,16 @@ export class HomeComponent implements OnInit {
   private subscription: Subscription | undefined;
 
   
+  isSearched = false;
+  resultFound = 0
 
-
-  searchText = "lord of the world"
+  searchText = ""
   searchBook(val:string){
+    this.isSearched = true;
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    console.log(val)
+
     this.searchText = val
     this.bookSearch = new FormControl('');
     this.subscription = this.subjectsService.getSeachBooks(this.searchText).subscribe((bdata) => {
@@ -29,6 +31,7 @@ export class HomeComponent implements OnInit {
       // console.log(typeof(bdata))
       this.searchedBooks = bdata;
       console.log(this.searchedBooks)
+      this.resultFound = this.searchedBooks.numFound;
     });
   }
 

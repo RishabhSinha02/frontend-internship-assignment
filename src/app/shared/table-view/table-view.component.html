@@ -1,6 +1,8 @@
 <div class="tw-m-24-px">
-  <div class="tw-mb-24-px tw-text-24-px"> Top {{ booksList.length }} book{{ booksList.length > 1 ? "s" : "" }} on {{ subjectName }}</div>
 
+  <a class="btn btn-outline-secondary mb-4" href="/" routerLink=''><mat-icon class="mt-2">arrow_back</mat-icon></a>
+
+  <div class="tw-mb-24-px tw-text-24-px"> Top {{ booksList.length }} book{{ booksList.length > 1 ? "s" : "" }} on {{ subjectName }}</div>
   <ng-container>
     <table class="table-view">
       <thead>
