@@ -13,12 +13,39 @@ export class HomeComponent implements OnInit {
   searchedBooks : any;
   private subscription: Subscription | undefined;
 
-  
+  searchFor : any
   isSearched = false;
   resultFound = 0
 
+  tempValueAuth = ""
+  tempValueBook = ""
+
   searchText = ""
+
+  // For Auth Search 
+  searchAuth(val:string){
+    this.tempValueBook = ""
+    this.searchFor = "Author";
+    this.searchText = val;
+    console.log(this.searchText);
+    this.isSearched = true;
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+    this.searchText = val
+    this.bookSearch = new FormControl('');
+    this.subscription = this.subjectsService.getSeachAuth(this.searchText).subscribe((bdata) => {
+      this.searchedBooks = bdata;
+      console.log(this.searchedBooks)
+      this.resultFound = this.searchedBooks.numFound;
+    });
+  }
+
+  // For Book Search 
   searchBook(val:string){
+    this.tempValueAuth = ""
+    this.searchFor = "Book";
     this.isSearched = true;
     if (this.subscription) {
       this.subscription.unsubscribe();

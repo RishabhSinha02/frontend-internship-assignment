@@ -8,19 +8,17 @@
       <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="search-button">
           <span class="input-group-text" id="basic-addon1"><mat-icon class="tw-mt-10-px m" aria-label="Search Icon">search</mat-icon></span>
-          <input #searchB name="searchKey" type="text" (keyup)="searchBook(searchB.value)" class="form-control me-2" type="search" placeholder="Search By Book" aria-label="Search">
+          <input #searchB name="searchKey" type="text" (keyup)="searchBook(searchB.value)" class="form-control me-2" type="search" placeholder="Search By Book" aria-label="Search" value = {{tempValueBook}}>
         </div>
       </div>
       <!-- For Author Search  -->
       <div class="col-sm-6">
         <div class="search-button">
           <span class="input-group-text" id="basic-addon1"><mat-icon class="tw-mt-10-px m" aria-label="Search Icon">search</mat-icon></span>
-          <input #searchB name="searchKey" type="text" (keyup)="searchBook(searchB.value)" class="form-control me-2" type="search" placeholder="Search by Author" aria-label="Search">
+          <input #searchA name="searchKey" type="text" (keyup)="searchAuth(searchA.value)" class="form-control me-2" type="search" placeholder="Search by Author" aria-label="Search" value = {{tempValueAuth}}>
         </div>
       </div>
     </div>
-    
-    
   </form>
 </div>
 <div *ngIf="searchText === ''" class="tw-flex tw-flex-row tw-m-24-px">
@@ -40,7 +38,7 @@
 
 <div *ngIf="searchText !== '' && resultFound !== 0" class="card mx-4">
   <div class="card-header">
-    <h5> <b> Searcing for : {{searchText}}</b> </h5>
+    <h5> <b> Searcing for {{searchFor}}: {{searchText}}</b> </h5>
   </div>
   <div class="card-body">
     <table class="searchedTabel">

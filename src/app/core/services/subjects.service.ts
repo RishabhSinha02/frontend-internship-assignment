@@ -20,10 +20,14 @@ export class SubjectsService {
 
 
  
-  // searchdata = "the+lord+of+the+rings";
-  // searchurl = "/search.json?title="+this.searchdata;
-  // for getting search data 
+
+  // for getting book search data 
   getSeachBooks(searchText : string): Observable<BookResponse> {
     return this.apiService.get(`/search.json?title=${searchText}`);
+  }
+
+  // for getting author search data 
+  getSeachAuth(searchAuthText : string): Observable<BookResponse> {
+    return this.apiService.get(`/search.json?author=${searchAuthText}&sort=new`);
   }
 }
