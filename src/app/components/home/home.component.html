@@ -1,3 +1,5 @@
+
+<button type="button" class="btn btn-danger">Primary</button>
 <div class="header">
   <div class="tw-text-24-px tw-font-600">Open Books Library</div>
   <form>
@@ -28,6 +30,8 @@
   {{searchText}}
 </div> -->
 
+
+<!-- Table  -->
 <div class="header_fixed">
   <table class="searchedTabel">
     <thead>
@@ -39,16 +43,26 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let subject of searchedBooks.docs">
-            <td>1</td>
+        <tr *ngFor="let subject of searchedBooks.docs | paginate:{
+          itemsPerPage: tableSize,
+          currentPage: page,
+          totalItems : count};
+          let i = index">
+            <td>{{(page-1)*10+i+1}}</td>
             <td>{{subject.title}}</td>
             <td>{{subject.author_name}}</td>
             <td>{{subject.first_publish_year}}</td>
         </tr>
     </tbody>
 </table>
+<div>
+  <pagination-controls
+    previousLabel = "Prev"
+    nextLabel = "Next"
+    (pageChange)="onTableDataChange($event)"
+  ></pagination-controls>
 </div>
-
+</div>
 
 <!-- <ul>
   <li *ngFor="let subject of searchedBooks.docs">

@@ -13,6 +13,9 @@ export class HomeComponent implements OnInit {
   searchedBooks : any;
   private subscription: Subscription | undefined;
 
+  
+
+
   searchText = "lord of the world"
   searchBook(val:string){
     if (this.subscription) {
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
       console.log(this.searchedBooks)
     });
   }
-  
+
 
 
   constructor(
@@ -57,11 +60,47 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bookSearch = new FormControl('');
+    this.subjectsService.getSeachBooks(this.searchText).subscribe((bdata) => {
+
+      this.searchedBooks = bdata;
+      console.log(this.searchedBooks)
+    });
+    
     this.bookSearch.valueChanges
       .pipe(
         debounceTime(300),
       ).
       subscribe((value: string) => {
       });
+  }
+
+  POST : any;
+  page : number = 1;
+  count : number = 0;
+  tableSize : number = 10;
+  tableSizes : any = [5,10,15,20]
+
+  onTableDataChange(event: any){
+    this.page = event;
+    this.bookSearch = new FormControl('');
+    this.subjectsService.getSeachBooks(this.searchText).subscribe((bdata) => {
+      // console.log(bdata)
+      // console.log(typeof(bdata))
+      this.searchedBooks = bdata;
+      console.log(this.searchedBooks)
+    });
+  }
+
+  onTableSizeChange(event: any){
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.bookSearch = new FormControl('');
+    this.subjectsService.getSeachBooks(this.searchText).subscribe((bdata) => {
+      // console.log(bdata)
+      // console.log(typeof(bdata))
+      this.searchedBooks = bdata;
+      console.log(this.searchedBooks)
+    });
   }
 }

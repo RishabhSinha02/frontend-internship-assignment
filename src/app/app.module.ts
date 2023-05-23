@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -20,10 +21,11 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     HttpClientModule,
     SharedModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground : true,
-    }),
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
