@@ -44,8 +44,8 @@
     <table class="searchedTabel">
       <thead>
         <tr>
-          <th>S No.</th>
-          <th>Book Name</th>
+          <th>Sr. No.</th>
+          <th>Book Title</th>
           <th>Author Name</th>
           <th>Year of Publish</th>
         </tr>
@@ -57,7 +57,7 @@
             totalItems : count};
             let i = index">
           <td>{{(page-1)*10+i+1}}</td>
-          <td>{{subject.title}}</td>
+          <td><a class="tw-no-underline" href="https://openlibrary.org{{ subject.key }}" target="_blank">{{ subject.title }}</a></td>
           <td>{{subject.author_name}}</td>
           <td>{{subject.first_publish_year}}</td>
         </tr>
