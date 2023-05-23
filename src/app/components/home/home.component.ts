@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, filter } from 'rxjs';
+import { Subscription, debounceTime, filter } from 'rxjs';
 import { SubjectsService } from '../../core/services/subjects.service';
 
 @Component({
@@ -11,25 +11,40 @@ import { SubjectsService } from '../../core/services/subjects.service';
 export class HomeComponent implements OnInit {
   bookSearch: FormControl;
   searchedBooks : any;
+  private subscription: Subscription | undefined;
 
-  constructor(
-    private subjectsService: SubjectsService
-  ) {
+  searchText = "lord of the world"
+  searchBook(val:string){
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    console.log(val)
+    this.searchText = val
     this.bookSearch = new FormControl('');
-    this.subjectsService.getSeachBooks().subscribe((bdata) => {
+    this.subscription = this.subjectsService.getSeachBooks(this.searchText).subscribe((bdata) => {
       // console.log(bdata)
       // console.log(typeof(bdata))
       this.searchedBooks = bdata;
       console.log(this.searchedBooks)
     });
   }
+  
 
-  searchText = ""
-  searchBook(val:string){
-    console.log(val)
-    this.searchText = val
+
+  constructor(
+    private subjectsService: SubjectsService
+  ) {
+    this.bookSearch = new FormControl('');
+    this.subjectsService.getSeachBooks(this.searchText).subscribe((bdata) => {
+      // console.log(bdata)
+      // console.log(typeof(bdata))
+      this.searchedBooks = bdata;
+      console.log(this.searchedBooks)
+    });
+    
   }
 
+  
   trendingSubjects: Array<any> = [
     { name: 'JavaScript' },
     { name: 'CSS' },

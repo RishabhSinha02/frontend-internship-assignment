@@ -20,9 +20,6 @@ export class TrendingSubjectsComponent implements OnInit {
     private route: ActivatedRoute,
     private subjectsService: SubjectsService
   ) {
-    this.subjectsService.getSeachBooks().subscribe((bdata) => {
-      console.log(bdata)
-    });
   }
 
   getAllBooks() {

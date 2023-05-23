@@ -24,11 +24,34 @@
     </ul>
   </section>
 </div>
-<div>
+<!-- <div>
   {{searchText}}
+</div> -->
+
+<div class="header_fixed">
+  <table class="searchedTabel">
+    <thead>
+        <tr>
+            <th>S No.</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
+            <th>Year of Publish</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let subject of searchedBooks.docs">
+            <td>1</td>
+            <td>{{subject.title}}</td>
+            <td>{{subject.author_name}}</td>
+            <td>{{subject.first_publish_year}}</td>
+        </tr>
+    </tbody>
+</table>
 </div>
-<ul>
+
+
+<!-- <ul>
   <li *ngFor="let subject of searchedBooks.docs">
     {{subject.title}} : {{subject.author_name}} : {{subject.first_publish_year}}
   </li>
-</ul>
+</ul> -->
